@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb+srv://bio8oid:8bio8oid8@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
-    useMongoClient: true
+    useNewUrlParser: true
 });
 
 //new user Schema
