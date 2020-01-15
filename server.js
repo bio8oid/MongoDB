@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb+srv://bio8oid:biooid@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true
 });
@@ -154,78 +155,3 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
     .then(findKennyAndDelete)
     .then(findBennyAndRemove)
     .catch(console.log.bind(console))
-
-
-
-
-
-
-
-
-
-
-// //const express = require('express');
-// const mongoose = require('mongoose');
-
-// // const app = express();
-// // app.use(express.json());
-
-// mongoose.Promise = global.Promise;
-
-// mongoose.connect('mongodb+srv://8bollod8:bollod@clustershopapp-j4vjy.mongodb.net/test?retryWrites=true&w=majority', {
-//   useNewUrlParser: true,
-// //   useUnifiedTopology: true
-// });
-
-// const ProductsSchema = new mongoose.Schema({
-  
-//     id: { type: String },
-//     tag: { type: String, required: true },
-//     title: { type: String, required: true },
-//     desc: { type: String, required: true },
-//     price: { type: Number, default: 0 },
-//     img: { type: String, required: true }
-// });
-
-// const products = mongoose.model('products', ProductsSchema);
-
-// products.find({}, function(err, res) {
-//         if (err) throw err;
-//         console.log('Actual database records are ' + res);
-//     });
-
-
-
-
-
-
-
-
-
-
-
-//     const MongoClient = require('mongodb').MongoClient;
-//     const assert = require('assert');
-
-// const uri = "mongodb+srv://8bollod8:bollod@clustershopapp-j4vjy.mongodb.net/Shop_App_Archery?retryWrites=true&w=majority"
-
-// MongoClient.connect(uri, { useNewUrlParser: true }, function(err, client) {
-
-//     assert.equal(null, err);
-    
-//     const db = client.db("Shop_App_Archery");
-    
-//     var cursor = db.collection('products').find({});
-    
-//        function iterateFunc(doc) {
-//            console.log(JSON.stringify(doc, null, 5));
-//         }
-        
-//         function errorFunc(error) {
-//             console.log(error);
-//         }
-        
-//         cursor.forEach(iterateFunc, errorFunc);
-
-//         client.close();
-// });
