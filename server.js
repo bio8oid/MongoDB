@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
-
-mongoose.connect('mongodb+srv://bio8oid:8bio8oid8@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://bio8oid:biooid@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true
 });
 
@@ -26,10 +25,10 @@ userSchema.methods.manify = function(next) {
 
 //pre-save method
 userSchema.pre('save', function(next) {
-    //pobranie aktualnego czasu
+    //get date
     const currentDate = new Date();
 
-    //zmiana pola na aktualny czas
+    //replace with current date
     this.updated_at = currentDate;
 
     if (!this.created_at)
@@ -41,7 +40,7 @@ userSchema.pre('save', function(next) {
 //model based on userSchema
 const User = mongoose.model('User', userSchema);
 
-//instancje klasy User
+//instance User class
 const kenny = new User({
     name: 'Kenny',
     username: 'Kenny_the_boy',
@@ -50,7 +49,7 @@ const kenny = new User({
 
 kenny.manify(function(err, name) {
     if (err) throw err;
-    console.log('Twoje nowe imię to: ' + name);
+    console.log('Your new name is: ' + name);
 });
 
 const benny = new User({
@@ -61,7 +60,7 @@ const benny = new User({
 
 benny.manify(function(err, name) {
     if (err) throw err;
-    console.log('Twoje nowe imię to: ' + name);
+    console.log('Your new name is: ' + name);
 });
 
 const mark = new User({
@@ -72,7 +71,7 @@ const mark = new User({
 
 mark.manify(function(err, name) {
     if (err) throw err;
-    console.log('Twoje nowe imię to: ' + name);
+    console.log('Your new name is: ' + name);
 });
 
 const findAllUsers = function() {
@@ -102,7 +101,7 @@ const updadeUserPassword = function() {
             return user.save(function(err) {
                 if (err) throw err;
 
-                console.log('Uzytkownik ' + user.name + ' zostal pomyslnie zaktualizowany');
+                console.log('User ' + user.name + ' updated successfully');
             })
         })
 }
@@ -112,7 +111,7 @@ const updateUsername = function() {
     return User.findOneAndUpdate({ username: 'Benny_the_boy' }, { username: 'Benny_the_man' }, { new: true }, function(err, user) {
         if (err) throw err;
 
-        console.log('Nazwa uzytkownika po aktualizacji to ' + user.username);
+        console.log('New user name is ' + user.username);
     })
 }
 
@@ -155,3 +154,78 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
     .then(findKennyAndDelete)
     .then(findBennyAndRemove)
     .catch(console.log.bind(console))
+
+
+
+
+
+
+
+
+
+
+// //const express = require('express');
+// const mongoose = require('mongoose');
+
+// // const app = express();
+// // app.use(express.json());
+
+// mongoose.Promise = global.Promise;
+
+// mongoose.connect('mongodb+srv://8bollod8:bollod@clustershopapp-j4vjy.mongodb.net/test?retryWrites=true&w=majority', {
+//   useNewUrlParser: true,
+// //   useUnifiedTopology: true
+// });
+
+// const ProductsSchema = new mongoose.Schema({
+  
+//     id: { type: String },
+//     tag: { type: String, required: true },
+//     title: { type: String, required: true },
+//     desc: { type: String, required: true },
+//     price: { type: Number, default: 0 },
+//     img: { type: String, required: true }
+// });
+
+// const products = mongoose.model('products', ProductsSchema);
+
+// products.find({}, function(err, res) {
+//         if (err) throw err;
+//         console.log('Actual database records are ' + res);
+//     });
+
+
+
+
+
+
+
+
+
+
+
+//     const MongoClient = require('mongodb').MongoClient;
+//     const assert = require('assert');
+
+// const uri = "mongodb+srv://8bollod8:bollod@clustershopapp-j4vjy.mongodb.net/Shop_App_Archery?retryWrites=true&w=majority"
+
+// MongoClient.connect(uri, { useNewUrlParser: true }, function(err, client) {
+
+//     assert.equal(null, err);
+    
+//     const db = client.db("Shop_App_Archery");
+    
+//     var cursor = db.collection('products').find({});
+    
+//        function iterateFunc(doc) {
+//            console.log(JSON.stringify(doc, null, 5));
+//         }
+        
+//         function errorFunc(error) {
+//             console.log(error);
+//         }
+        
+//         cursor.forEach(iterateFunc, errorFunc);
+
+//         client.close();
+// });
