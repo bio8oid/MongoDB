@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const PORT = process.env.PORT || 5000;
+const express = require('express');
+const app = express();
 
 app.get('/', (req, res) => res.send('Hello planet Earth I am alive alredy :)'));
 app.listen(PORT);
@@ -8,7 +11,8 @@ app.listen(PORT);
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb+srv://bio8oid:biooid@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 //new user Schema
