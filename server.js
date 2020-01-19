@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+app.get('/', (req, res) => res.send('Hello planet Earth I am alive alredy :)'));
+app.listen(PORT);
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb+srv://bio8oid:biooid@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
