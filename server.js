@@ -5,7 +5,22 @@ const PORT = process.env.PORT || 5000;
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => res.send('Hello planet Earth I am alive alredy :)'));
+const getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (key, value) => {
+        if (typeof value === "object" && value !== null) {
+            if (seen.has(value)) {
+                return;
+            }
+            seen.add(value);
+        }
+        return value;
+    };
+};
+
+// JSON.stringify(circularReference, getCircularReplacer());
+
+app.get('/', (req, res) => res.send(JSON.stringify(findAllUsers, getCircularReplacer())));
 app.listen(PORT);
 
 mongoose.Promise = global.Promise;
@@ -88,6 +103,7 @@ const findAllUsers = function() {
     return User.find({}, function(err, res) {
         if (err) throw err;
         console.log('Actual database records are ' + res);
+        return res;
     });
 }
 
