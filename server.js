@@ -18,7 +18,7 @@ const getCircularReplacer = () => {
     };
 };
 
-// JSON.stringify(circularReference, getCircularReplacer());
+JSON.stringify(circularReference, getCircularReplacer());
 
 app.get('/', (req, res) => res.send(JSON.stringify(findAllUsers, getCircularReplacer())));
 app.listen(PORT);
