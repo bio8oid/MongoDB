@@ -7,7 +7,7 @@ const app = express();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://bio8oid:biooid@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://tester:${process.env.MONGO_PASSWORD_TEST}@testapp-fecil.mongodb.net/test?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -107,7 +107,6 @@ const updadeUserPassword = function() {
             console.log('New password is ' + user.password);
             return user.save(function(err) {
                 if (err) throw err;
-
                 console.log('User ' + user.name + ' updated successfully');
             })
         })
@@ -183,9 +182,9 @@ app.listen(PORT);
 // const MongoClient = require('mongodb').MongoClient;
 // const assert = require('assert');
 
-// const uri = "mongodb+srv://8bollod8:bollod@clustershopapp-j4vjy.mongodb.net/Shop_App_Archery?retryWrites=true&w=majority"
+// const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@clustershopapp-j4vjy.mongodb.net/test?retryWrites=true&w=majority`
 
-// MongoClient.connect(uri, { useNewUrlParser: true }, (err, client) => {
+// MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
 
 //     assert.equal(null, err);
 //     const db = client.db("Shop_App_Archery");
