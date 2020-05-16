@@ -5,9 +5,6 @@ const PORT = process.env.PORT || 5000;
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => res.send("Hello World !!!"));
-app.listen(PORT);
-
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb+srv://bio8oid:biooid@bio8oid-idk43.mongodb.net/test?retryWrites=true&w=majority', {
@@ -164,3 +161,41 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
     .then(findKennyAndDelete)
     .then(findBennyAndRemove)
     .catch(console.log.bind(console))
+
+
+app.get('/', function (err, res) {
+    User.find({}, function (err, result) {
+        if (err) {
+            console.log('err:', err)
+        } else {
+            res.send(JSON.stringify(result, null, 2));
+        };
+    });
+});
+
+app.listen(PORT);
+
+
+
+    //// -----------------  for testing connection -------------- \\\\
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const assert = require('assert');
+
+// const uri = "mongodb+srv://8bollod8:bollod@clustershopapp-j4vjy.mongodb.net/Shop_App_Archery?retryWrites=true&w=majority"
+
+// MongoClient.connect(uri, { useNewUrlParser: true }, (err, client) => {
+
+//     assert.equal(null, err);
+//     const db = client.db("Shop_App_Archery");
+//     var productsData = db.collection('products').find({});
+
+//     readProducts = doc => {
+//         console.log(doc);
+//     }
+
+//     productsData.forEach(readProducts);
+//     client.close();
+// })
+
